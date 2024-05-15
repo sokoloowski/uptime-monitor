@@ -31,3 +31,9 @@ flask manage add <ip-address> [--name <friendly-name>]
 ```bash
 flask manage set-name <new-name> --to <ip-address>
 ```
+
+### Remove host
+
+```bash
+flask manage remove <ip-address>
+```

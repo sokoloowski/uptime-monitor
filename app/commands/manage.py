@@ -25,3 +25,13 @@ def cmd_set_name(name, to):
         return
     host.name = name
     db.session.commit()
+
+
+@bp.cli.command("remove")
+@click.argument("ipaddress")
+def cmd_remove_device(ipaddress):
+    host = db.session.query(Host).filter(Host.ipaddress == ipaddress).one_or_none()
+    if host is None:
+        return
+    db.session.delete(host)
+    db.session.commit()

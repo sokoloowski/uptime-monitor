@@ -12,7 +12,7 @@ class Host(db.Model):
     ipaddress = mapped_column(sa.String(39), nullable=False)
     name = mapped_column(sa.String(255), nullable=True)
     up = mapped_column(sa.Boolean, nullable=False, server_default=sa.false())
-    history = relationship('HostHistory', back_populates='host', lazy=True)
+    history = relationship('HostHistory', back_populates='host', lazy=True, cascade='all, delete-orphan')
 
 
 class HostHistory(db.Model):
