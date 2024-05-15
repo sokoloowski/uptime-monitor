@@ -2,6 +2,8 @@
 
 A simple uptime monitor that checks if a host is up or down.
 
+![Uptime Monitor web interface](img/uptime-monitor-web.png)
+
 ## Inspiration
 
 I wanted to monitor hosts in my network in similar way to how [UptimeRobot](https://uptimerobot.com) does it.
