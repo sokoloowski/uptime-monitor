@@ -1,0 +1,21 @@
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.indicator-up {
+    background-color: lawngreen;
+}
+
+.indicator-down {
+    background-color: red;
+}
+
+.diagram {
+    border-radius: 5px;
+    display: inline-block;
+    height: 3em;
+    min-width: 5px;
+}

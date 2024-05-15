@@ -1,0 +1,41 @@
+{% extends "base.html.jinja" %}
+
+{% block content %}
+    {% if not hosts %}
+        <div class="text-center mt-5">
+            <h1>There are no hosts in database...</h1>
+            <p class="lead">Please add some hosts with
+                <code>flask manage add &lt;ip-address&gt; [--name &lt;friendly-name&gt;]</code></p>
+        </div>
+    {% endif %}
+    {% for host in hosts %}
+        <div id="ip{{ host.ipaddress|replace(".", "-")|replace(":", "-") }}" class="py-3">
+            <div class="float-end indicator indicator-{{ "up" if host.up else "down" }}"></div>
+            <div>
+                {% if host.name %}
+                    <h2 class="lead">{{ host.name }}</h2>
+                    <p class="text-secondary">{{ host.ipaddress }}</p>
+                {% else %}
+                    <p class="lead">{{ host.ipaddress }}</p>
+                {% endif %}
+            </div>
+            <div class="history-diagram d-flex justify-content-between w-100">
+                {% if host.history|length < 100 %}
+                    {# fill missing history #}
+                    {% for _ in range(100 - host.history|length) %}
+                        <div class="diagram bg-secondary"></div>
+                    {% endfor %}
+                {% endif %}
+                {% for h in host.history[-100:] %}
+                    <div class="diagram indicator-{{ "up" if h.up else "down" }}"
+                         title="{{ h.created_at }}"></div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+
+    <script src="{{ url_for('static', filename="history.js") }}"></script>
+{% endblock %}
