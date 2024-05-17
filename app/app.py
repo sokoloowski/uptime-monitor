@@ -37,6 +37,7 @@ def create_app():
 
     # Initialize Socket.io
     socketio.init_app(app)
+    socketio.cors_allowed_origins = app.config["CORS_ALLOWED_ORIGINS"]
 
     @socketio.on("*")
     def handle_my_custom_event(json):
