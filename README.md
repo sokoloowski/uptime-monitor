@@ -10,9 +10,15 @@ I wanted to monitor hosts in my network in similar way to how [UptimeRobot](http
 
 ## Usage
 
-Start service with WSGI. Also, remember to add following command to crontab to run the monitor every minute.
+Start service with WSGI, e.g. `gunicorn`:
 
+```bash
+gunicorn wsgi -b <ip-address>:<port> --chdir /path/to/uptime-monitor --worker-class eventlet
 ```
+
+Also, remember to add following command to crontab to run the monitor every minute.
+
+```cronexp
 * * * * * /path/to/python -m flask --app /path/to/uptime-monitor/app/app.py iputils ping
 ```
 
