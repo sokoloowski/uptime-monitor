@@ -3,7 +3,7 @@ import sys
 
 import click
 import requests
-from flask import Blueprint
+from flask import Blueprint, current_app
 
 from app.app import db
 from app.models import Host, HostHistory
@@ -23,7 +23,7 @@ def ping_host(ip_addr):
     host.up = (is_down == 0)
     db.session.add(host_history)
     db.session.commit()
-    requests.post("http://127.0.0.1:5000/api/" + ip_addr, json={"status": is_down})
+    requests.post(f"http://{current_app.config['APP_HOST']}:{current_app.config['APP_PORT']}/api/" + ip_addr, json={"status": is_down})
 
 
 @bp.cli.command("ping")
