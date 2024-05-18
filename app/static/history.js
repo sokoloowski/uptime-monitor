@@ -1,6 +1,4 @@
 socket.on("history", (data) => {
-    console.log(data)
-
     // Add entry to the history diagram
     let containerId = "ip" + data["host"].replaceAll(".", "-").replaceAll(":", "-");
     let diagramContainer = document.querySelector(`#${containerId} .history-diagram`);
