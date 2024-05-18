@@ -5,7 +5,7 @@ from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-socketio = SocketIO()
+socketio = SocketIO(cors_allowed_origins="*")
 
 
 # Flask quickstart:
@@ -37,7 +37,6 @@ def create_app():
 
     # Initialize Socket.io
     socketio.init_app(app)
-    socketio.cors_allowed_origins = app.config["CORS_ALLOWED_ORIGINS"]
 
     @socketio.on("*")
     def handle_my_custom_event(json):
