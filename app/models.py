@@ -9,7 +9,7 @@ from app.app import db
 class Host(db.Model):
     __tablename__ = 'host'
     id = mapped_column(sa.Integer, primary_key=True)
-    ipaddress = mapped_column(sa.String(39), nullable=False)
+    ipaddress = mapped_column(sa.String(39), nullable=False, unique=True)
     name = mapped_column(sa.String(255), nullable=True)
     up = mapped_column(sa.Boolean, nullable=False, server_default=sa.false())
     history = relationship('HostHistory', back_populates='host', lazy=True, cascade='all, delete-orphan')
