@@ -62,7 +62,7 @@ def create_app():
     from app.commands.manage import bp as bp_manage
     app.register_blueprint(bp_manage)
 
-    from app.commands.ping import bp as bp_ping
+    from app.commands.iputils import bp as bp_ping
     app.register_blueprint(bp_ping)
 
     return app
