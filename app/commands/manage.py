@@ -1,8 +1,9 @@
 import click
-from flask import Blueprint
+from flask import Blueprint, current_app
 
 from app.app import db
 from app.models import Host
+from app.utils.discord import notify_new_host, notify_removed_host
 
 bp = Blueprint('manage', __name__)
 
@@ -14,6 +15,7 @@ def cmd_add_device(ipaddress, name):
     host = Host(ipaddress=ipaddress, name=name)
     db.session.add(host)
     db.session.commit()
+    notify_new_host(current_app.config["DISCORD_NOTIFICATION_WEBHOOK"], host)
 
 
 @bp.cli.command("set-name")
@@ -35,3 +37,4 @@ def cmd_remove_device(ipaddress):
         return
     db.session.delete(host)
     db.session.commit()
+    notify_removed_host(current_app.config["DISCORD_NOTIFICATION_WEBHOOK"], host)

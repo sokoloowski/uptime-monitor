@@ -3,3 +3,4 @@ SECRET_KEY = "CHANGE_ME"  # does not matter, remember to change it if app is wor
 SQLALCHEMY_DATABASE_URI = "sqlite://"  # set path to file, which will be placed inside the instance folder
 APP_HOST = "127.0.0.1"  # default for development server
 APP_PORT = 5000  # default for development server
+DISCORD_NOTIFICATION_WEBHOOK = None  # set to Discord webhook URL to enable notifications

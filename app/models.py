@@ -12,7 +12,11 @@ class Host(db.Model):
     ipaddress = mapped_column(sa.String(39), nullable=False, unique=True)
     name = mapped_column(sa.String(255), nullable=True)
     up = mapped_column(sa.Boolean, nullable=False, server_default=sa.false())
+    notified = mapped_column(sa.Boolean, nullable=False, server_default=sa.false())
     history = relationship('HostHistory', back_populates='host', lazy=True, cascade='all, delete-orphan')
+
+    def __str__(self):
+        return self.name or self.ipaddress
 
 
 class HostHistory(db.Model):
