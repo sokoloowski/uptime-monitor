@@ -18,9 +18,22 @@ gunicorn wsgi -b <ip-address>:<port> --chdir /path/to/uptime-monitor --worker-cl
 
 Also, remember to add following command to crontab to run the monitor every minute.
 
-```cronexp
+```
 * * * * * /path/to/python -m flask --app /path/to/uptime-monitor/app/app.py iputils ping
 ```
+
+## Updating
+
+To update the monitor:
+
+1. pull the latest changes from the repository,
+2. upgrade database schema:
+   ```bash
+   /path/to/python -m flask --app /path/to/uptime-monitor/app/app.py db upgrade
+   # or
+   flask db upgrade # if you are in the root of the project and using correct venv
+   ```
+3. restart the service.
 
 ## Management
 

@@ -1,10 +1,12 @@
 import os
 
 from flask import Flask, jsonify
+from flask_migrate import Migrate, upgrade
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+migrate = Migrate()
 socketio = SocketIO(cors_allowed_origins="*")
 
 
@@ -28,12 +30,7 @@ def create_app():
 
     # Initialize SQLAlchemy
     db.init_app(app)
-
-    from app.models import Host, HostHistory
-
-    with app.app_context():
-        db.create_all()
-        db.session.commit()
+    migrate.init_app(app, db)
 
     # Initialize Socket.io
     socketio.init_app(app)
