@@ -21,7 +21,7 @@ MarkupSafe==2.1.5
 packaging==24.0
 python-engineio==4.9.0
 python-socketio==5.11.2
-requests==2.31.0
+requests==2.32.2
 simple-websocket==1.0.0
 SQLAlchemy==2.0.30
 typing_extensions==4.11.0
