@@ -25,6 +25,6 @@ requests==2.31.0
 simple-websocket==1.0.0
 SQLAlchemy==2.0.30
 typing_extensions==4.11.0
-urllib3==2.2.1
+urllib3==2.2.2
 Werkzeug==3.0.3
 wsproto==1.2.0
